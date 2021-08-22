@@ -1,0 +1,10 @@
+ProductName: SDK6
+ProductIdentifier: ctrmap.sdk6
+MultiRelease: false
+SingleTargetPlatform: AMX_CTR
+SourceDirectories:
+  - AMX_CTR: src
+
+Definitions:
+  - SANGO
+

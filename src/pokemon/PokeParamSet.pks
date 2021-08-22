@@ -1,0 +1,26 @@
+package pokemon;
+
+public enum PokeParamSet {
+	IV_HP = 1000,
+	IV_ATK,
+	IV_DEF,
+	IV_SPA,
+	IV_SPD,
+	IV_SPE,
+	HAPPINESS,
+	FLAG,
+	EV_HP,
+	EV_ATK,
+	EV_DEF,
+	EV_SPA,
+	EV_SPD,
+	EV_SPE,
+	#ifdef SANGO
+	CONTEST_COOL,
+	CONTEST_BEAUTY,
+	CONTEST_CUTE,
+	CONTEST_CLEVER,
+	CONTEST_TOUGH,
+	CONTEST_SHEEN,
+	#endif
+}
