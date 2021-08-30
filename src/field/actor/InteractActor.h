@@ -10,7 +10,6 @@ import field.system.EventWork;
 import field.event.dialog.msg.MsgFrame;
 import field.event.dialog.msg.MsgFlags;
 import field.event.dialog.msg.Message;
-import sound.SE;
 
 public class InteractActor {
 
@@ -112,29 +111,29 @@ public class InteractActor {
 		return EventWork.WorkGet(WKID_INTERACT_ACTOR_FLAGS);
 	}
 
-	static void CallBasicMessageInteraction(int msgId, MsgFrame frame, MsgFlags flags) {
+	static void CallBasicMessageInteraction(int actor, int msgId, MsgFrame frame, MsgFlags flags) {
 		#ifdef SANGO
-		BeginPlayerInteraction(ActionFlags.HALFSIT_ENABLE | ActionFlags.SET_AUTO_ANIME | ActionFlags.SEIZA_ENABLE);
+		BeginPlayerInteraction(ActionFlags.HALFSIT_ENABLE | ActionFlags.SET_AUTO_ANIME | ActionFlags.SEIZA_ENABLE, actor);
 		#else if XY
-		BeginPlayerInteraction(ActionFlags.HALFSIT_ENABLE | ActionFlags.SET_AUTO_ANIME);
+		BeginPlayerInteraction(ActionFlags.HALFSIT_ENABLE | ActionFlags.SET_AUTO_ANIME, actor);
 		#endif
 
-		Message.ShowMessageBox(msgId, Actor.ACTOR_CURRENT_SCROBJ, frame, Message.MSGWIN_NO_AUTOHIDE, flags, false);
+		Message.ShowMessageBox(msgId, actor, frame, Message.MSGWIN_NO_AUTOHIDE, flags, false);
 
 		EndPlayerInteraction();
 	}
 
-	static void BeginPlayerInteraction(ActionFlags flags) {
+	static void BeginPlayerInteraction(int actor, ActionFlags flags) {
 		#ifdef SANGO
-		flags = _TalkMdlStartInit(INTERACT_ACTOR_SCROBJ, flags, PlayerActor.PlayerGetReturnDir(), Actor.MdlIsHalfSitSkelPreset(Actor.ACTOR_CURRENT_SCROBJ));
+		flags = _TalkMdlStartInit(actor, flags, PlayerActor.PlayerGetReturnDir(), Actor.MdlIsHalfSitSkelPreset(actor));
 		#else if XY
-		flags = _TalkMdlStartInit(INTERACT_ACTOR_SCROBJ, flags);
+		flags = _TalkMdlStartInit(actor, flags);
 		#endif
 
 		int actualActor = GetCurrentInteractActor();
 
 		if ((flags & ActionFlags.MSG_SFX_DISABLE) == 0) {
-			PlayMsgSFX();
+			Message.PlayMsgSFX();
 		}
 
 		if ((flags & ActionFlags.DIRECTION_CHANGE_DISABLE) == 0) {
@@ -182,10 +181,6 @@ public class InteractActor {
 		}
 		
 		#endif
-	}
-
-	static void PlayMsgSFX() {
-		SE.SEPlay(393216);
 	}
 
 	static void TurnActorTowardsPlayer(int actor) {

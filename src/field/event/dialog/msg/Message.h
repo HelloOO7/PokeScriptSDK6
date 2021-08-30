@@ -5,11 +5,12 @@ import field.event.dialog.msg.MsgFlags;
 import core.Input;
 import field.event.dialog.DialogCommon;
 import field.event.dialog.DialogUI;
+import sound.SE;
 
 public class Message {
 	static final int MSGWIN_NO_AUTOHIDE = -1;
 
-	/**
+	/**
 	*	The juggernaut function to display a message window with various parameters.
 	*	This function holds the record for the highest number of arguments in Pokémon with a whopping 19.
 	*
@@ -29,6 +30,10 @@ public class Message {
 	*/
 	native void TalkMdlMsg_Seq(int msgId, int windowNo, int actor, MsgFrame frame, int winX, int a6, int winY, int a8, int a9, int a10, int attachOfsSrc, int attachOfsTgt, int a13, boolean winIsAbs, boolean attachIsAbs, boolean attachIsActor, int autoHideFrames, int a18, MsgFlags flags);
 
+	static void PlayMsgSFX() {
+		SE.SEPlay(393216);
+	}
+
 	static void ShowMessageBox(int msgId, int actor, MsgFrame frame, int autoHideFrames, MsgFlags flags, boolean continuous) {
 		TalkMdlMsg_Seq(msgId, 0, actor, frame, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, true, autoHideFrames, 0, flags);
 
@@ -36,10 +41,11 @@ public class Message {
 			DialogCommon.WaitForWindowLoad();
 		}
 
-		if (autoHideFrames != MSGWIN_NO_AUTOHIDE) {
+		if (autoHideFrames == MSGWIN_NO_AUTOHIDE) {
 			if (continuous) {
 				DialogUI.SetKeyWaitMark();
 				Input._ABKeyWait();
+				PlayMsgSFX();
 				DialogUI.VanishKeyWaitMark();
 			}
 			else {

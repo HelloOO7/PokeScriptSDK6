@@ -44,7 +44,7 @@ public class Actions {
 
 	#ifdef SANGO
 	/**
-	*	Queues anhe Action Command for a MoveModel, allowing for TURN action commands where possible.
+	*	Queues an Action Command for a MoveModel, allowing for TURN action commands where possible.
 	*
 	*	@param acmd The Action Command ID.
 	*	@param dir Movement direction of the Action.

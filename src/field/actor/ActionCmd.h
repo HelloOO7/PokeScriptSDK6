@@ -61,7 +61,7 @@ public enum ActionCmd {
 	VANISH_ON,
 	VANISH_OFF,
 
-	PAUSE_DIR_ON,
+	PAUSE_DIR_ON, //50
 	PAUSE_DIR_OFF,
 
 	PAUSE_ANM_ON,
