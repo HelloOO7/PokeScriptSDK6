@@ -4,7 +4,7 @@ This repository contains headers, definitions and utilities that can be used in 
 
 ## Building
 
-SDK6 is a PokéScript source library without any standalone executable code, which means it can not be built as program. Sources will get built and included automatically as they are imported into a parent project's runnable source files.
+SDK6 is a PokéScript source library without any standalone executable code, which means it can not be built as a program. Sources will get built and included automatically as they are imported into a parent project's runnable source files.
 
 ## Usage
 

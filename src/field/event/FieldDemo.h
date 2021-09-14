@@ -19,6 +19,16 @@ public class FieldDemo {
 	static native void CallFieldCaptureDemo(int seqId);
 
 	/**
+	 * 	Plays a sequence in the Field scene.
+	 * 	
+	 * 	@param seqId ID of the sequence.
+	 * 	@param seqTextId Ranging from 0 to 6, this parameter describes an index into a lookup of text files to use for the sequence. Apart from the default value (0), this functionality is unused.
+	 *	@param allowCameraMotion If set, cutscene camera animations are applied to the Field camera. The behavior is undefined if the camera's view mode is anything other than LookAt.
+	 */
+
+	static native void CallFieldNotCaptureDemo(int seqId, int seqTextId, boolean allowCameraMotion);
+
+	/**
 	 * 	Calls the game's single Pokémon showcase sequence.
 	 * 	
 	 * 	@param sequenceId ID of the sequence to play.
